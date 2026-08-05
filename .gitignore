@@ -40,11 +40,6 @@ backend/data/local_index*
 models/
 .cache/
 
-# --------------------------------------------------------------------- binaries
-# Rhubarb is vendored intentionally (lip-sync fallback); keep it.
-!backend/bin/rhubarb.exe
-!backend/bin/rhubarb
-!backend/bin/res/
 
 # ------------------------------------------------------------------------- os
 .DS_Store

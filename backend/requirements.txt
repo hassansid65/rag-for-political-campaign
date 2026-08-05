@@ -1,0 +1,65 @@
+# =============================================================================
+#  Python 3.10 (3.10.0+). Every pin below is verified installable and importable
+#  on CPython 3.10 / Windows, Linux and macOS.
+#
+#  Install order matters for torch — see README. Short version:
+#     pip install -r requirements.txt
+#  installs the default (CUDA on Linux/Windows, CPU on macOS). For a CPU-only
+#  box, install torch first from the CPU index and then this file:
+#     pip install torch==2.5.1 --index-url https://download.pytorch.org/whl/cpu
+#     pip install -r requirements.txt
+# =============================================================================
+
+# ---------------------------------------------------------------- API layer
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+python-multipart==0.0.20
+websockets==14.1
+pydantic==2.10.4
+pydantic-settings==2.7.0
+python-dotenv==1.0.1
+
+# ------------------------------------------------------------- document I/O
+pymupdf==1.25.1              # PDF text + table extraction (fast, no Java/Ghostscript)
+python-docx==1.1.2           # DOCX
+# Optional heavier structure-aware parser; better on multi-column PDFs and
+# complex tables but ~10x slower. Enable with USE_UNSTRUCTURED=1.
+# unstructured[pdf,docx]==0.16.11
+
+# --------------------------------------------------------------- embeddings
+# BGE-small-en-v1.5 (384d) + the cross-encoder rerankers.
+# torch 2.5.1 is the last line with full cp310 wheels on all three platforms.
+torch==2.5.1
+sentence-transformers==3.3.1
+transformers==4.46.3         # 4.47+ requires tokenizers that drop some cp310 wheels
+numpy==1.26.4                # <2.0: pinned for ABI compatibility with torch 2.5.x
+
+# Optional ONNX Runtime path (~2x faster CPU inference, no torch at serve time).
+# Enable with EMBEDDING_USE_ONNX=1.
+# optimum[onnxruntime]==1.23.3
+# onnxruntime==1.20.1
+
+# ------------------------------------------------------------ vector store
+# pymilvus imports `pkg_resources`, which setuptools REMOVED in 81.0. Without
+# this pin pymilvus fails at import time and the store silently degrades to the
+# local NumPy backend — a failure that looks like "Milvus is down".
+setuptools<81
+pymilvus==2.5.0
+# grpcio is deliberately NOT pinned here — pymilvus constrains it tightly and an
+# explicit pin makes the resolver fail rather than pick a compatible pair.
+# Embedded Milvus — no Windows wheel exists upstream.
+milvus-lite==2.4.10 ; sys_platform != "win32"
+
+# ---------------------------------------------------------------------- LLM
+# 0.120.0+ is required for `output_config` (effort control) and `thinking` on the
+# streaming API. Older SDKs raise TypeError on those kwargs; the client
+# feature-detects and drops them, but you lose latency control.
+anthropic==0.120.0
+
+# ------------------------------------------------------------------- speech
+azure-cognitiveservices-speech==1.42.0
+
+# ------------------------------------------------------------------- tooling
+httpx==0.28.1
+pytest==8.3.4
+pytest-asyncio==0.25.0

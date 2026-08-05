@@ -1,0 +1,13 @@
+<svg width="240" height="80" viewBox="0 0 240 80" xmlns="http://www.w3.org/2000/svg">
+  <!-- Mosdorfer Logo representation -->
+  <!-- The M -->
+  <path d="M 20 10 L 20 45 A 15 15 0 0 0 50 45 L 50 10 L 40 10 L 40 25 L 35 35 L 30 25 L 30 10 Z" fill="#005b9f"/>
+  <!-- The O and Lightning -->
+  <circle cx="35" cy="45" r="12" fill="none" stroke="#005b9f" stroke-width="4"/>
+  <path d="M 38 35 L 28 48 L 35 48 L 32 58 L 42 45 L 35 45 Z" fill="#e3000f"/>
+  
+  <!-- Text -->
+  <text x="60" y="45" font-family="Arial, sans-serif" font-weight="bold" font-size="28" fill="#111">MOSDORFER</text>
+  <rect x="60" y="52" width="160" height="15" fill="#e3000f"/>
+  <text x="65" y="63" font-family="Arial, sans-serif" font-weight="bold" font-size="10" fill="#fff" letter-spacing="1">KNILL GRUPPE</text>
+</svg>

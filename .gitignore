@@ -1,0 +1,57 @@
+# ------------------------------------------------------------------ secrets
+.env
+.env.local
+*.env
+!.env.example
+!.env.local.example
+
+# ------------------------------------------------------------------- python
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+
+# --------------------------------------------------------------- node / next
+node_modules/
+.next/
+out/
+npm-debug.log*
+.eslintcache
+
+# -------------------------------------------------- generated data & indexes
+# Rebuildable from the source documents via /upload — never commit these.
+backend/data/uploads/
+backend/data/tts_audio/
+backend/data/*.npz
+backend/data/*.pkl
+backend/data/*.db
+backend/data/milvus_campaign.db*
+backend/data/grounding_index*
+backend/data/smoke_index*
+backend/data/local_index*
+
+# Model weights cache
+models/
+.cache/
+
+# --------------------------------------------------------------------- binaries
+# Rhubarb is vendored intentionally (lip-sync fallback); keep it.
+!backend/bin/rhubarb.exe
+!backend/bin/rhubarb
+!backend/bin/res/
+
+# ------------------------------------------------------------------------- os
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ---------------------------------------------------------------------- ide
+.vscode/
+.idea/
+*.swp
